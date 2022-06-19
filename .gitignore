@@ -5,3 +5,6 @@ node_modules
 /functions/\[\[path\]\].js.map
 /public/build
 .env
+
+# Tailwind CSS generated files
+/app/styles.css

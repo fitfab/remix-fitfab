@@ -1,4 +1,4 @@
-# Welcome to Remix!
+# Welcome to Remix! (Cloudfare Pages)
 
 - [Remix Docs](https://remix.run/docs)
 

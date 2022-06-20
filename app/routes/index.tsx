@@ -1,6 +1,7 @@
 import { NavLink } from "@remix-run/react";
 
 export default function Index() {
+  console.log("HOME PAGE");
   return (
     <div className="h-[100vh] max-w-5xl">
       <h1>fitfab</h1>

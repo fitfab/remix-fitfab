@@ -1,7 +1,9 @@
 import type { EntryContext } from "@remix-run/cloudflare";
 import { RemixServer } from "@remix-run/react";
 import { renderToString } from "react-dom/server";
-
+import { ApolloProvider } from "@apollo/client";
+import { getDataFromTree } from "@apollo/client/react/ssr";
+import ApolloContext, { initApollo } from "./context/apolloClient";
 /**
  *
  * This is your entry into the server rendering
@@ -14,14 +16,27 @@ export default function handleRequest(
   responseHeaders: Headers,
   remixContext: EntryContext
 ) {
-  let markup = renderToString(
-    <RemixServer context={remixContext} url={request.url} />
+  const client = initApollo();
+  const App = (
+    <ApolloProvider client={client}>
+      <RemixServer context={remixContext} url={request.url} />
+    </ApolloProvider>
   );
 
-  responseHeaders.set("Content-Type", "text/html");
+  return getDataFromTree(App).then(() => {
+    const initialState = client.extract();
 
-  return new Response("<!DOCTYPE html>" + markup, {
-    status: responseStatusCode,
-    headers: responseHeaders,
+    let markup = renderToString(
+      <ApolloContext.Provider value={initialState}>
+        {App}
+      </ApolloContext.Provider>
+    );
+
+    responseHeaders.set("Content-Type", "text/html");
+
+    return new Response("<!DOCTYPE html>" + markup, {
+      status: responseStatusCode,
+      headers: responseHeaders,
+    });
   });
 }

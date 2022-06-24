@@ -7,6 +7,7 @@ const isBrowser = typeof document !== "undefined";
 
 const initialState = isBrowser ? window.__INITIAL_STATE__ : {};
 
+// This is going to be used to create the ApolloClient instance by server and client
 export function initApollo(ssrMode = true) {
   return new ApolloClient({
     uri: GRAPHCMS_ENDPOINT,

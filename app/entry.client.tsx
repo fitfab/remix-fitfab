@@ -11,6 +11,9 @@ import { initApollo } from "./context/apolloClient";
  * window.history.scrollRestoration, etc.
  */
 function Client() {
+  /**
+   * Initilize apolloclient for the browser
+   */
   const client = initApollo(false);
   return (
     <ApolloProvider client={client}>

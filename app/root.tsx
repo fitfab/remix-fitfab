@@ -45,6 +45,7 @@ export default function App() {
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
+        {/* Apolloclient initial state added to the window object from the server */}
         <script
           dangerouslySetInnerHTML={{
             __html: `window.__INITIAL_STATE__=${JSON.stringify(

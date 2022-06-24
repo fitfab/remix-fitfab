@@ -75,3 +75,45 @@ View details in the file: [root.tsx](./app/root.tsx)
 3. add ApolloProvider to the `entry.server.tsx` file. The ApolloProvider is used to inject the Apollo Client into the server. The Apollo Client is used to query the GraphQL server. See the file [entry.server.tsx](./app/entry.server.tsx) for more details.
 
 4. add ApolloProvider to the `entry.client.tsx` file. See the file [entry.client.tsx](./app/entry.client.tsx) for more details.
+
+5. Then consume the data from a page via useQuery from apollo Client
+
+```tsx
+// GrapQL query
+const CLIENTS = gql`
+  query {
+    clients {
+      id
+      name
+      location
+      description
+      technology
+    }
+  }`
+ // route/page
+ export default function Index() {
+  // fetch data -- this will be fetch in the backend and in the client if ones  navigates
+  // from the browser (SPA behavior)
+  const { data, loading, error } = useQuery(CLIENTS);
+
+  if (loading) {
+    return <p>loading...</p>;
+  }
+  if (error) {
+    return <p>Error</p>;
+  }
+
+  return (
+    <div className="h-[100vh] max-w-5xl">
+      <h1>clients</h1>
+      <nav className="bg-gradient-to-l from-cyan-500 to-blue-500">
+        <NavLink to="/">Home</NavLink> | <NavLink to="/work">Work</NavLink>
+      </nav>
+      <blockquote>hello</blockquote>
+      <RenderClients className="mt-6" clients={data.clients} />
+    </div>
+  );
+}
+
+`;
+```

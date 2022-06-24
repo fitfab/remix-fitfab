@@ -1,6 +1,6 @@
 import { NavLink } from "@remix-run/react";
 import { gql, useQuery } from "@apollo/client";
-// import { initApollo } from "~/context/apolloClient";
+
 const CLIENTS = gql`
   query {
     clients {

@@ -1,3 +1,4 @@
+import React from "react";
 import type { MetaFunction, LinksFunction } from "@remix-run/cloudflare";
 import {
   Links,
@@ -7,6 +8,8 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+
+import ApolloContext from "./context/apolloClient";
 
 /**
  *
@@ -30,6 +33,7 @@ export const meta: MetaFunction = () => ({
 });
 
 export default function App() {
+  const initialState = React.useContext(ApolloContext);
   return (
     <html lang="en">
       <head>
@@ -41,6 +45,14 @@ export default function App() {
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
+        {/* Apolloclient initial state added to the window object from the server */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.__INITIAL_STATE__=${JSON.stringify(
+              initialState
+            ).replace(/</g, "\\u003c")};`,
+          }}
+        />
       </body>
     </html>
   );

@@ -9,6 +9,24 @@ Note: run `yarn generate:css` before running `yarn dev` to generate the CSS file
 
 ## Apollo Client
 
+Comments from Ryan FLorence [I'm not sure what use cases Apollo client fills in the context of Remix.](https://github.com/remix-run/remix/pull/1626#issuecomment-1025226015)
+
+<blockquote>
+I'm not sure what use cases Apollo client fills in the context of Remix.
+
+- On the initial SSR, getDataFromTree wipes out all the benefits of Remix's SSR approach.
+- You can't fetch all data in parallel on the initial SSR
+- You can't fetch all data/modules/css in parallel on client side transitions
+- You can't prefetch pages the user is about to navigate to
+- It ships a lot more JS to the client
+- You can't model mutations in the UI as simple forms
+
+I'd be interested to see this example but remove Apollo client and just fetch from the graphql API from a loader and then compare the performance characteristics.
+
+Perhaps this is most useful as an example of migrating to Remix from Apollo Client? I don't know, would love to hear your thoughts.
+
+</blockquote>
+
 Install following dependencies:
 
 `yarn add @apollo/client graphql`

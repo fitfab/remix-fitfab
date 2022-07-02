@@ -1,4 +1,3 @@
-import React from "react";
 import type { MetaFunction, LinksFunction } from "@remix-run/cloudflare";
 import {
   Links,
@@ -7,9 +6,11 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  NavLink,
+  Link,
 } from "@remix-run/react";
 
-import ApolloContext from "./context/apolloClient";
+import Logo from "~/components/Logo";
 
 /**
  *
@@ -29,30 +30,38 @@ export const links: LinksFunction = () => [
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
   title: "fitfab - miguel julio - front-end developer",
+  description:
+    "miguel julio front-end developer, programming, web production, front end developer, reactjs developer, search engine optimization, HTML5, CSS/CSS3, JavaScript, Reactjs, Nodejs, Nextjs, Remix-run, Redux, Webpack, vitejs, JSON, ES6, Typescript, GraphQL. Established in New York City, 1999",
+  keywords:
+    "professional web development, front-end-web-developer, Library-ui developer, web standard compliant, user experience design, web page design services,front-end developer, intranet web development,corporate web-developer consultants,website development,web page design,small business websites,corporate websites,best web-developer, react-developer, HTML5, SaSS/CSS3, tailwindcss, styled-components, nextjs, remix-run, JavaScript, Typescript, Reactjs, Nodejs, Redux, Webpack, vitejs, storybook, JSON, GraphQL, ES6, FITFAB by miguel julio, web-developer new york city, miguel julio",
   viewport: "width=device-width,initial-scale=1",
 });
 
 export default function App() {
-  const initialState = React.useContext(ApolloContext);
   return (
     <html lang="en">
       <head>
         <Meta />
         <Links />
       </head>
-      <body className="flex h-full justify-center">
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
-        {/* Apolloclient initial state added to the window object from the server */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.__INITIAL_STATE__=${JSON.stringify(
-              initialState
-            ).replace(/</g, "\\u003c")};`,
-          }}
-        />
+      <body className="flex items-start justify-center min-h-screen w-full mt-12 relative overflow-hidden">
+        <div className="min-w-[320px] max-w-6xl w-full">
+          <header className="flex gap-6 mb-14">
+            <Link to="/" aria-label="Home">
+              <Logo />
+            </Link>
+
+            <nav className="bg-[#262626] text-white h-12 flex flex-grow items-center justify-end gap-6 pr-6 after:content-[''] after:absolute after:right-0 after:h-12 after:bg-[#262626] after:z-[-1] after:left-1/2">
+              <NavLink to="/">Home</NavLink>
+              <NavLink to="/work">Work</NavLink>
+            </nav>
+          </header>
+
+          <Outlet />
+          <ScrollRestoration />
+          <Scripts />
+          <LiveReload />
+        </div>
       </body>
     </html>
   );

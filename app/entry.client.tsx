@@ -1,7 +1,5 @@
 import { RemixBrowser } from "@remix-run/react";
 import { hydrate } from "react-dom";
-import { ApolloProvider } from "@apollo/client";
-import { initApollo } from "./context/apolloClient";
 /**
  * This is your entry into the browser rendering/hydration
  * piece of Remix. This file is required.
@@ -10,15 +8,4 @@ import { initApollo } from "./context/apolloClient";
  * You can initialize client side libraries, setup things like
  * window.history.scrollRestoration, etc.
  */
-function Client() {
-  /**
-   * Initilize apolloclient for the browser
-   */
-  const client = initApollo(false);
-  return (
-    <ApolloProvider client={client}>
-      <RemixBrowser />
-    </ApolloProvider>
-  );
-}
-hydrate(<Client />, document);
+hydrate(<RemixBrowser />, document);

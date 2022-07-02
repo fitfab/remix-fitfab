@@ -1,14 +1,22 @@
-import { NavLink } from "@remix-run/react";
-import { gql, useQuery } from "@apollo/client";
+import type { LoaderFunction } from "@remix-run/cloudflare";
+import { json } from "@remix-run/cloudflare";
+import { useLoaderData } from "@remix-run/react";
+import { gql } from "graphql-request";
+
+import { graphqlClient } from "~/lib/graphqlClient";
 
 const CLIENTS = gql`
-  query {
-    clients {
-      id
+  query (
+    $first: Int
+    $skip: Int
+    $where: ClientWhereInput
+    $orderBy: ClientOrderByInput
+  ) {
+    clients(first: $first, skip: $skip, where: $where, orderBy: $orderBy) {
       name
-      location
       description
       technology
+      location
     }
   }
 `;
@@ -22,6 +30,10 @@ export interface Client {
   __typename: string;
 }
 
+export type LoaderData = {
+  data: { clients: Client[] };
+  errors?: any[];
+};
 export interface RenderClientProps
   extends React.AllHTMLAttributes<HTMLDivElement> {
   clients: Client[];
@@ -38,9 +50,14 @@ function RenderClients(props: RenderClientProps) {
       {clients.map((client, index) => (
         <div
           key={index}
-          className="mt-4 border-solid border-[1px]  border-gray-300 p-4 rounded-lg"
+          className="mt-4 border-solid border-[1px]  border-gray-300 p-4 rounded-lg w-[48%]"
         >
-          <h2 className="text-lg">{client.name}</h2>
+          <h2 className="text-2xl font-extralight">
+            {client.name}{" "}
+            <em className="inline-block ml-9 text-neutral-500">
+              {client.location}
+            </em>
+          </h2>
           <p className="mb-4">{client.description}</p>
           {client.technology.map((tech, index) => (
             <span
@@ -56,24 +73,27 @@ function RenderClients(props: RenderClientProps) {
   );
 }
 
-export default function Index() {
-  const { data, loading, error } = useQuery(CLIENTS);
+export const loader: LoaderFunction = async (): Promise<any> => {
+  const variables = {
+    first: 25,
+    skip: 0,
+    orderBy: "endDate_DESC",
+  };
+  const data: LoaderData = await graphqlClient.request(CLIENTS, variables);
+  return json(data);
+};
 
-  if (loading) {
-    return <p>loading...</p>;
-  }
-  if (error) {
-    return <p>Error</p>;
-  }
+export default function Index() {
+  const data = useLoaderData();
+  console.log(data);
 
   return (
-    <div className="h-[100vh] max-w-5xl">
-      <h1>clients</h1>
-      <nav className="bg-gradient-to-l from-cyan-500 to-blue-500">
-        <NavLink to="/">Home</NavLink> | <NavLink to="/work">Work</NavLink>
-      </nav>
-      <blockquote>hello</blockquote>
-      <RenderClients className="mt-6" clients={data.clients} />
-    </div>
+    <>
+      <h1>Work</h1>
+      <RenderClients
+        className="mt-6 flex flex-wrap gap-6"
+        clients={data.clients}
+      />
+    </>
   );
 }

@@ -17,16 +17,28 @@ const CLIENTS = gql`
       description
       technology
       location
+      media {
+        url
+        title
+        height
+        width
+      }
     }
   }
 `;
-
+export interface Media {
+  url: string;
+  title: string;
+  height: string;
+  width: string;
+}
 export interface Client {
   name: string;
   description: string;
   id: string;
   location: string;
   technology: string[];
+  media: Media;
   __typename: string;
 }
 
@@ -58,6 +70,7 @@ function RenderClients(props: RenderClientProps) {
               {client.location}
             </em>
           </h2>
+          <img src={client.media.url} alt={client.media.title} />
           <p className="mb-4">{client.description}</p>
           {client.technology.map((tech, index) => (
             <span

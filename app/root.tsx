@@ -10,7 +10,7 @@ import {
   Link,
 } from "@remix-run/react";
 
-import Logo from "~/components/Logo";
+import { Logo, Navigation, Footer } from "~/components/index";
 
 /**
  *
@@ -44,20 +44,31 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="flex items-start justify-center min-h-screen w-full mt-12 relative overflow-hidden">
+      <body className="flex items-start justify-center min-h-screen w-full mt-12 relative overflow-x-hidden">
         <div className="min-w-[320px] max-w-6xl w-full">
-          <header className="flex gap-6 mb-14">
+          <header className="flex gap-2">
             <Link to="/" aria-label="Home">
-              <Logo />
+              <Logo height="36px" />
             </Link>
 
-            <nav className="bg-[#262626] text-white h-12 flex flex-grow items-center justify-end gap-6 pr-6 after:content-[''] after:absolute after:right-0 after:h-12 after:bg-[#262626] after:z-[-1] after:left-1/2">
-              <NavLink to="/">Home</NavLink>
-              <NavLink to="/work">Work</NavLink>
-            </nav>
+            <Navigation>
+              <NavLink
+                to="/"
+                className={({ isActive }) => (isActive ? "text-red" : "")}
+              >
+                Home
+              </NavLink>
+              <NavLink
+                to="/work"
+                className={({ isActive }) => (isActive ? "text-red" : "")}
+              >
+                Work
+              </NavLink>
+            </Navigation>
           </header>
 
           <Outlet />
+          <Footer></Footer>
           <ScrollRestoration />
           <Scripts />
           <LiveReload />

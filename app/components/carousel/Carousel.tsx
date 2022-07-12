@@ -16,9 +16,9 @@ export interface CarouselProps extends React.AllHTMLAttributes<HTMLDivElement> {
   className?: string;
   /**
    * The height of the carousel
-   * - `'small'` = 88px
-   * - `'medium'` = 320px
-   * - `'large'` = 640px
+   * - `'small'` = 96px
+   * - `'medium'` = 384px
+   * - `'large'` = 480px
    */
   height?: "small" | "medium" | "large";
   /**
@@ -41,9 +41,9 @@ export function Carousel({
   const sliderGutter = 32;
 
   const size = {
-    small: `88px`,
-    medium: "320px",
-    large: "616px",
+    small: "96px",
+    medium: "384px",
+    large: "480px",
   };
 
   /**

@@ -4,10 +4,10 @@ export interface LogoProps extends React.AllHTMLAttributes<SVGAElement> {
   middleLettersColor?: string;
   endLettersColor?: string;
 }
-export default function Logo({
+export function Logo({
   height = "48",
-  width = "152",
-  middleLettersColor = "#262626",
+  width = "100%",
+  middleLettersColor = "#464646",
   endLettersColor = "#ca1001",
 }: LogoProps) {
   return (

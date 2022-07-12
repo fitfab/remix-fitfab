@@ -5,7 +5,7 @@ import React from "react";
 export const Button = ({
   className = "js_CarouselButton",
   ...rest
-}: JSX.IntrinsicElements["button"]) => {
+}: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   const btnClasses =
     "flex justify-center items-center absolute bottom-[0px] w-8 h-8 border-[1px] border-neutral-700 rounded-full transition-all duration-300 ease-linear";
   return <button className={`${btnClasses} ${className}`} {...rest} />;
@@ -14,7 +14,7 @@ export const Button = ({
 export const CarouselWrapper = ({
   className = "js_CarouselWrapper",
   ...rest
-}: JSX.IntrinsicElements["div"]) => {
+}: React.AllHTMLAttributes<HTMLDivElement>) => {
   return (
     <div
       className={`${className} w-full overflow-x-visible relative`}
@@ -26,7 +26,7 @@ export const CarouselWrapper = ({
 export const Viewport = ({
   className = "js_Viewport",
   ...rest
-}: JSX.IntrinsicElements["div"]) => {
+}: React.AllHTMLAttributes<HTMLDivElement>) => {
   return (
     <div
       className={`${className} w-full relative overflow-x-scroll sm:overflow-visible`}
@@ -38,10 +38,10 @@ export const Viewport = ({
 export const Navigation = ({
   className = "js_CarouselNavigation",
   ...rest
-}: JSX.IntrinsicElements["div"]) => {
+}: React.AllHTMLAttributes<HTMLDivElement>) => {
   return (
     <div
-      className={`${className} relative h-14 mt-10 border-neutral-200 border-t-[1px] hidden sm:block`}
+      className={`${className} relative h-14 mt-10 border-t-dark-500 border-t-[1px] hidden sm:block`}
       {...rest}
     />
   );
@@ -49,7 +49,10 @@ export const Navigation = ({
 
 export const ScrollIndicator = React.forwardRef(
   (
-    { className = "js_Slider", ...rest }: JSX.IntrinsicElements["div"],
+    {
+      className = "js_Slider",
+      ...rest
+    }: React.AllHTMLAttributes<HTMLDivElement>,
     ref: React.Ref<HTMLDivElement>
   ) => {
     return (
@@ -58,7 +61,7 @@ export const ScrollIndicator = React.forwardRef(
         ref={ref}
         {...rest}
       >
-        <div className={`bg-black h-[3px] w-full`}></div>
+        <div className={`bg-dark-900 h-[3px] w-full`}></div>
       </div>
     );
   }
@@ -67,7 +70,10 @@ ScrollIndicator.displayName = "ScrollIndicator";
 
 export const Slider = React.forwardRef(
   (
-    { className = "js_Slider", ...rest }: JSX.IntrinsicElements["div"],
+    {
+      className = "js_Slider",
+      ...rest
+    }: React.AllHTMLAttributes<HTMLDivElement>,
     ref: React.Ref<HTMLDivElement>
   ) => {
     return (

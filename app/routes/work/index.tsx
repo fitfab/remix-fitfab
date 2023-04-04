@@ -2,6 +2,7 @@ import type { LoaderFunction } from "@remix-run/cloudflare";
 import { json } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
 import { gql } from "graphql-request";
+import { Carousel, Hero, WorkCard } from "~/components";
 
 import { graphqlClient } from "~/lib/graphqlClient";
 
@@ -51,38 +52,18 @@ export interface RenderClientProps
   clients: Client[];
 }
 
-function RenderClients(props: RenderClientProps) {
+function RenderCarousel(props: RenderClientProps) {
   const { clients, className } = props;
   if (!clients) {
     return null;
   }
 
   return (
-    <div className={className}>
+    <Carousel className={className} height="small">
       {clients.map((client, index) => (
-        <div
-          key={index}
-          className="mt-4 border-solid border-[1px]  border-gray-300 p-4 rounded-lg w-[48%]"
-        >
-          <h2 className="text-2xl font-extralight">
-            {client.name}{" "}
-            <em className="inline-block ml-9 text-neutral-500">
-              {client.location}
-            </em>
-          </h2>
-          <img src={client.media.url} alt={client.media.title} />
-          <p className="mb-4">{client.description}</p>
-          {client.technology.map((tech, index) => (
-            <span
-              key={index}
-              className="rounded-full p-[4px_12px] mr-2 bg-emerald-500 text-cyan-50 inline-block"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
+        <WorkCard key={index} {...client} />
       ))}
-    </div>
+    </Carousel>
   );
 }
 
@@ -98,15 +79,20 @@ export const loader: LoaderFunction = async (): Promise<any> => {
 
 export default function Index() {
   const data = useLoaderData();
-  console.log(data);
 
   return (
-    <>
-      <h1>Work</h1>
-      <RenderClients
-        className="mt-6 flex flex-wrap gap-6"
-        clients={data.clients}
-      />
-    </>
+    <div>
+      <Hero>
+        <p className="text-justify font-extralight md:w-2/3">
+          Front-End Web Developer with a flair for design — committed to create
+          websites that meet design and technical requirements — including SEO,
+          Usability and accessibility based on web standards guidelines.
+        </p>
+      </Hero>
+      <h2 className="uppercase text-2xl mb-4 font-black tracking-wide text-dark-800">
+        Work History
+      </h2>
+      <RenderCarousel className="mt-4 mb-4" clients={data.clients} />
+    </div>
   );
 }

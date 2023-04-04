@@ -9,7 +9,7 @@ const GRAPHCMS_ENDPOINT =
 export const graphqlClient = new GraphQLClient(GRAPHCMS_ENDPOINT, {
   fetch: fetch,
 });
-// --------------------------------------------| The end |---
+// --------------------------------------------| The end |--- //
 
 /**
  * @name fetchFromGraphQL

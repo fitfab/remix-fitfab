@@ -1,16 +1,16 @@
-import type { MetaFunction, LinksFunction } from "@remix-run/cloudflare";
+import type { LinksFunction, MetaFunction } from "@remix-run/cloudflare";
 import {
+  Link,
   Links,
   LiveReload,
   Meta,
+  NavLink,
   Outlet,
   Scripts,
   ScrollRestoration,
-  NavLink,
-  Link,
 } from "@remix-run/react";
 
-import { Logo, Navigation, Footer } from "~/components/index";
+import { Footer, Logo, Navigation } from "~/components/index";
 
 /**
  *
@@ -27,6 +27,8 @@ export const links: LinksFunction = () => [
   },
 ];
 
+const year = new Date().getFullYear();
+
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
   title: "fitfab - miguel julio - front-end developer",
@@ -38,37 +40,48 @@ export const meta: MetaFunction = () => ({
 });
 
 export default function App() {
+  const beforeClass =
+    "before:content[' '] before:outline-[10vw] before:p-12 before:absolute before:left-[-100%] before:right-[calc(100%)] before:top-0 before:bottom-0 before:bg-dark-600/95 before:z-40 before:border-r-[16px] before:border-dark-600";
   return (
-    <html lang="en">
+    <html lang="en" className=" overflow-x-hidden bg-dark-600">
       <head>
         <Meta />
         <Links />
+        <link rel="preload" href="Mona-Sans.woff2" as="font" type="font/woff2" crossOrigin="true" />
       </head>
-      <body className="flex items-start justify-center min-h-screen w-full mt-12 relative overflow-x-hidden">
-        <div className="min-w-[320px] max-w-6xl w-full">
-          <header className="flex gap-2">
-            <Link to="/" aria-label="Home">
-              <Logo height="36px" />
+      <body className="flex items-center justify-center min-h-screen w-full relative overflow-hidden">
+        <div
+          className={`flex items-start justify-center flex-col min-w-[320px] h-[100vh] max-w-6xl w-full bg-white  p-4 relative ${beforeClass}`}
+        >
+          <header className="flex place-content-between gap-2 w-full">
+            <Link
+              to="/"
+              aria-label="Home"
+              // className="absolute left-[-306px] z-50"
+            >
+              <Logo height="88px" />
             </Link>
 
             <Navigation>
               <NavLink
                 to="/"
-                className={({ isActive }) => (isActive ? "text-red" : "")}
+                className={({ isActive }) => (isActive ? "text-brand" : "")}
               >
                 Home
               </NavLink>
               <NavLink
                 to="/work"
-                className={({ isActive }) => (isActive ? "text-red" : "")}
+                className={({ isActive }) => (isActive ? "text-brand" : "")}
               >
                 Work
               </NavLink>
             </Navigation>
           </header>
-
           <Outlet />
-          <Footer></Footer>
+          <Footer />
+          <strong className="font-black text-8xl text-white-200 rotate-90 translate-x-[-92px] block">
+            {year}
+          </strong>
           <ScrollRestoration />
           <Scripts />
           <LiveReload />

@@ -7,7 +7,7 @@ export interface IconProps extends React.AllHTMLAttributes<SVGAElement> {
 export function ChevronRight({
   height = "16",
   width = "9",
-  strokeColor = "#262626",
+  strokeColor = "#fff",
 }: IconProps) {
   return (
     <svg
@@ -31,7 +31,7 @@ export function ChevronRight({
 export function ChevronLeft({
   height = "16",
   width = "9",
-  strokeColor = "#262626",
+  strokeColor = "#fff",
 }: IconProps) {
   return (
     <svg

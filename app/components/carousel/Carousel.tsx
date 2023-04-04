@@ -41,7 +41,7 @@ export function Carousel({
   const sliderGutter = 32;
 
   const size = {
-    small: "96px",
+    small: "264px",
     medium: "384px",
     large: "480px",
   };
@@ -104,13 +104,14 @@ export function Carousel({
       scrollBarWidth.current = viewportWidth.current / scenes.current.length;
 
       scrollBar.current!.style.width = `${scrollBarWidth.current}px`;
-      slider.current!.style.width = `${sliderWidth - sliderGutter}px`;
+      slider.current!.style.width = `${sliderWidth}px`;
     }
     window.addEventListener("resize", initializeCarousel);
     if (firstRender.current === true) {
       initializeCarousel();
       return;
     }
+    console.log("scenes", scenes.current);
 
     scrollByIndex();
     return () => {
@@ -121,7 +122,7 @@ export function Carousel({
   return (
     <CarouselWrapper>
       <Viewport style={{ height: size[height] }} className={className}>
-        <Slider className="js_Slider gap-8" ref={slider}>
+        <Slider className="js_Slider gap-4" ref={slider}>
           {children}
         </Slider>
       </Viewport>
@@ -130,7 +131,7 @@ export function Carousel({
         <Button
           aria-label="Previous"
           title="Previous"
-          className="left-[calc(100%_-_88px)] disabled:opacity-25"
+          className="left-[calc(100%_-_88px)] disabled:bg-dark-800/60"
           data-direction="prev"
           onClick={handleNavigation}
           disabled={index === 0 ? true : false}
@@ -140,7 +141,7 @@ export function Carousel({
         <Button
           aria-label="Next"
           title="Next"
-          className="right-0 disabled:opacity-25"
+          className="right-0 disabled:bg-dark-800/60"
           data-direction="next"
           onClick={handleNavigation}
           disabled={

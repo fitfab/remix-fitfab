@@ -7,7 +7,7 @@ export const Button = ({
   ...rest
 }: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   const btnClasses =
-    "flex justify-center items-center absolute bottom-[0px] w-8 h-8 border-[1px] border-neutral-700 rounded-full transition-all duration-300 ease-linear";
+    "flex justify-center items-center absolute bottom-[0px] w-10 h-10 bg-brand rounded-full transition-all duration-300 ease-linear";
   return <button className={`${btnClasses} ${className}`} {...rest} />;
 };
 
@@ -17,7 +17,7 @@ export const CarouselWrapper = ({
 }: React.AllHTMLAttributes<HTMLDivElement>) => {
   return (
     <div
-      className={`${className} w-full overflow-x-visible relative`}
+      className={`${className} w-full overflow-x-visible relative `}
       {...rest}
     />
   );
@@ -41,7 +41,7 @@ export const Navigation = ({
 }: React.AllHTMLAttributes<HTMLDivElement>) => {
   return (
     <div
-      className={`${className} relative h-14 mt-10 border-t-dark-500 border-t-[1px] hidden sm:block`}
+      className={`${className} relative h-14 border-t-dark-500 border-t-[1px] hidden sm:block`}
       {...rest}
     />
   );
@@ -61,7 +61,7 @@ export const ScrollIndicator = React.forwardRef(
         ref={ref}
         {...rest}
       >
-        <div className={`bg-dark-900 h-[3px] w-full`}></div>
+        <div className={`bg-brand h-[3px] w-full`}></div>
       </div>
     );
   }
@@ -78,7 +78,7 @@ export const Slider = React.forwardRef(
   ) => {
     return (
       <div
-        className={`flex flex-row w-fit absolute top-0 left-0 bottom-0 transition-all duration-500 ease-out ${className}`}
+        className={`flex flex-row children:flex-none max-w-max absolute top-0 left-0 bottom-0 transition-all duration-500 ease-out ${className}`}
         ref={ref}
         {...rest}
       />

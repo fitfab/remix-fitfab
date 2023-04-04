@@ -1,4 +1,4 @@
-import { Carousel, Card, WorkCard, Footer, Hero } from "~/components/index";
+import { Hero } from "~/components/index";
 
 export default function Index() {
   return (
@@ -25,41 +25,8 @@ export default function Index() {
         </p>
       </Hero>
       <h2 className=" text-2xl mb-4 font-black tracking-wide text-dark-500">
-        Work
+        Work history
       </h2>
-
-      <Carousel className=" w-full">
-        <WorkCard
-          companyShortName="artnet"
-          companyName="Artnet Worldwide Corporation"
-          caption="Tech stack"
-        />
-        <WorkCard
-          companyShortName="HBC"
-          companyName="Hudson's Bay Company"
-          caption="Tech stack"
-        />
-        <WorkCard
-          companyShortName="Citibank"
-          companyName="Citigroup Private Bank"
-          caption="Tech stack"
-        />
-        <WorkCard
-          companyShortName="Equinox"
-          companyName="Equinox Fitness"
-          caption="Tech stack"
-        />
-        <WorkCard
-          companyShortName="Equinox"
-          companyName="Equinox Fitness"
-          caption="Tech stack"
-        />
-        <WorkCard
-          companyShortName="Equinox"
-          companyName="Equinox Fitness"
-          caption="Tech stack"
-        />
-      </Carousel>
     </div>
   );
 }

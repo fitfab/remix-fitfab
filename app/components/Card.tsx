@@ -29,34 +29,51 @@ export function Card() {
   );
 }
 
-export interface WorkCardProps extends React.AllHTMLAttributes<HTMLElement> {
-  companyShortName?: string;
-  companyName?: string;
-  caption?: string;
-  imgUrl?: string;
+export type ImageProps = {
+  url: string;
+  title: string;
+  height: string;
+  width: string;
+};
+
+export interface WorkCardProps {
+  className?: string;
+  technology?: string[];
+  name?: string;
+  description?: string;
+  location: string;
+  media: ImageProps;
 }
 
 export function WorkCard({
   className,
-  companyName,
-  companyShortName,
-  imgUrl = "orange",
-  caption,
+  name,
+  location,
+  description,
+  media,
+  technology,
   ...rest
 }: WorkCardProps) {
   return (
-    <div className={`flex flex-col gap-2 max-w-md ${className}`} {...rest}>
-      <div
-        className={`flex items-end justify-start text-white h-72 w-72 text-4xl overflow-hidden`}
-      >
-        <img
-          className="object-contain"
-          src="/media/mcd.svg"
-          alt="Man looking at item at a store"
-        />
+    <div
+      className={`flex flex-col gap-2 p-4 max-w-xs md:max-w-lg bg-white-100 text-dark-900 ${className}`}
+      {...rest}
+    >
+      {name && (
+        <h2 className="text-dark-900 text-2xl font-black mb-2">{name}</h2>
+      )}
+      <p>{description}</p>
+      <div className="overflow-hidden flex flex-wrap gap-2  mt-4">
+        {technology!.map((tech, index) => (
+          <em
+            key={index}
+            className="rounded-full p-[4px_12px] bg-dark-800
+               text-white-100 w-auto text-xs"
+          >
+            {tech}
+          </em>
+        ))}
       </div>
-      {companyName && <p className="text-dark-900">{companyName}</p>}
-      {caption && <p className="text-dark-500">{caption}</p>}
     </div>
   );
 }

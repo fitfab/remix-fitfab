@@ -60,9 +60,9 @@ export function WorkCard({
       {...rest}
     >
       {name && (
-        <h2 className="text-dark-900 text-2xl font-black mb-2">{name}</h2>
+        <h2 className="text-dark-900 text-2xl font-black mb-2 tracking-wide">{name}</h2>
       )}
-      <p>{description}</p>
+      <p className="text-base font-light">{description}</p>
       <div className="overflow-hidden flex flex-wrap gap-2  mt-4">
         {technology!.map((tech, index) => (
           <em

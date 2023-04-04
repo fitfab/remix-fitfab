@@ -59,7 +59,7 @@ export default function App() {
               aria-label="Home"
               // className="absolute left-[-306px] z-50"
             >
-              <Logo height="88px" />
+              <Logo height="64px" />
             </Link>
 
             <Navigation>

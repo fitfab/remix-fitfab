@@ -43,7 +43,7 @@ export default function App() {
   const beforeClass =
     "before:content[' '] before:outline-[10vw] before:p-12 before:absolute before:left-[-100%] before:right-[calc(100%)] before:top-0 before:bottom-0 before:bg-dark-600/95 before:z-40 before:border-r-[16px] before:border-dark-600";
   return (
-    <html lang="en" className=" overflow-x-hidden bg-dark-600">
+    <html lang="en" data-theme="fitfab" className="overflow-x-hidden bg-dark-600">
       <head>
         <Meta />
         <Links />

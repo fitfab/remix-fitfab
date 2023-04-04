@@ -6,13 +6,11 @@ export interface IconProps extends React.AllHTMLAttributes<SVGAElement> {
 }
 export function ChevronRight({
   height = "16",
-  width = "9",
   strokeColor = "#fff",
 }: IconProps) {
   return (
     <svg
       className="foo"
-      width={width}
       height={height}
       viewBox="0 0 9 16"
       fill="none"
@@ -30,13 +28,11 @@ export function ChevronRight({
 
 export function ChevronLeft({
   height = "16",
-  width = "9",
   strokeColor = "#fff",
 }: IconProps) {
   return (
     <svg
       className="foo"
-      width={width}
       height={height}
       viewBox="0 0 9 16"
       fill="none"

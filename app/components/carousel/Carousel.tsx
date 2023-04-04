@@ -1,13 +1,13 @@
 import React from "react";
+import { ChevronLeft, ChevronRight } from "~/components/icons";
 import {
+  Button,
   CarouselWrapper,
-  Viewport,
-  Slider,
   Navigation,
   ScrollIndicator,
-  Button,
+  Slider,
+  Viewport,
 } from "./partials";
-import { ChevronRight, ChevronLeft } from "~/components/icons";
 
 export interface CarouselProps extends React.AllHTMLAttributes<HTMLDivElement> {
   /**
@@ -42,7 +42,7 @@ export function Carousel({
 
   const size = {
     small: "264px",
-    medium: "384px",
+    medium: "320px",
     large: "480px",
   };
 
@@ -131,7 +131,7 @@ export function Carousel({
         <Button
           aria-label="Previous"
           title="Previous"
-          className="left-[calc(100%_-_88px)] disabled:bg-dark-800/60"
+          className="btn btn-circle w-12 left-[calc(100%_-_112px)] disabled:bg-dark-800/60"
           data-direction="prev"
           onClick={handleNavigation}
           disabled={index === 0 ? true : false}
@@ -141,7 +141,7 @@ export function Carousel({
         <Button
           aria-label="Next"
           title="Next"
-          className="right-0 disabled:bg-dark-800/60"
+          className="btn btn-circle w-12 right-0 disabled:bg-dark-800/60"
           data-direction="next"
           onClick={handleNavigation}
           disabled={

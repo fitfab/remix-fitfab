@@ -56,24 +56,27 @@ export function WorkCard({
 }: WorkCardProps) {
   return (
     <div
-      className={`flex flex-col gap-2 p-4 max-w-xs md:max-w-lg bg-white-100 text-dark-900 ${className}`}
+      className={`card max-w-xs md:max-w-lg bg-secondary ${className}`}
       {...rest}
     >
+
+      <div className="card-body">
       {name && (
-        <h2 className="text-dark-900 text-2xl font-black mb-2 tracking-wide">{name}</h2>
+        <h2 className="card-title text-neutral text-2xl font-black mb-2 tracking-wide">{name}</h2>
       )}
       <p className="text-base font-light">{description}</p>
       <div className="overflow-hidden flex flex-wrap gap-2  mt-4">
         {technology!.map((tech, index) => (
-          <em
+          <div
             key={index}
-            className="rounded-full p-[4px_12px] bg-dark-800
-               text-white-100 w-auto text-xs"
+            className="badge badge-accent badge-outline p-[4px_12px]"
           >
             {tech}
-          </em>
+          </div>
         ))}
       </div>
+</div>
+
     </div>
   );
 }

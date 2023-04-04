@@ -59,7 +59,7 @@ function RenderCarousel(props: RenderClientProps) {
   }
 
   return (
-    <Carousel className={className} height="small">
+    <Carousel className={className} height="medium">
       {clients.map((client, index) => (
         <WorkCard key={index} {...client} />
       ))}

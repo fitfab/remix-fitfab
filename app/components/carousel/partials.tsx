@@ -61,7 +61,7 @@ export const ScrollIndicator = React.forwardRef(
         ref={ref}
         {...rest}
       >
-        <div className={`bg-brand h-[3px] w-full`}></div>
+        <div className={`bg-primary h-[3px] w-full`}></div>
       </div>
     );
   }
